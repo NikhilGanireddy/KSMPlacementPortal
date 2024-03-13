@@ -1,5 +1,5 @@
-import { SignUp } from "@clerk/nextjs";
+import {SignIn} from "@clerk/nextjs";
 
 export default function Page() {
-    return <SignUp />;
+    return<main className={`w-full h-full flex justify-center items-center`}> <SignIn /></main>;
 }
