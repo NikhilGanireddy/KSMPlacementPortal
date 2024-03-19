@@ -20,7 +20,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (<ClerkProvider appearance={{
-        baseTheme: dark
+        baseTheme: dark,
     }}>
         <html lang="en">
         <body className={clsx(inter.className, "w-full min-h-screen max-w-[2500px] p-4 lg:p-8")}>

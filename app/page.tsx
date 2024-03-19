@@ -44,8 +44,7 @@ const Page = () => {
                     Login
                 </Link>
             </Button>}
-            {user.isSignedIn && <div className={`flex justify-center items-center gap-8`}>
-                <UserButton afterSignOutUrl={"/sign-in"}/></div>}
+
         </div>
 
     </main>
