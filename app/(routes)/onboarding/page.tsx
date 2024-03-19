@@ -1,76 +1,57 @@
 "use client"
 
 import {Button} from "@/components/ui/button";
-import {updateUserRole} from "@/utils/actions/user.actions";
+import { updateUserRole} from "@/utils/actions/user.actions";
 import {useUser} from "@clerk/nextjs";
 import {useRouter} from "next/navigation";
+// import {useGlobalUserContext} from "@/context/context";
+import {toast} from "sonner";
 
 const Page = () => {
 
     const user = useUser()
-    // console.log(user.user?.id)
     const router = useRouter();
+
     if (user.isSignedIn) {
 
         const updateUser = async () => {
             await updateUserRole({userId: user.user?.id, role: 'user'})
-            await router.push("/onboarding/user/personal_details");
+            toast('Account marked as a User')
+            router.push("/onboarding/user/personal_details");
         }
         const updateClient = async () => {
             await updateUserRole({userId: user.user?.id, role: 'client'})
-            await router.push("/onboarding/client/personal_details");
+            toast('Account marked as a Client')
+             router.push("/onboarding/client/personal_details");
         }
         const updateAdmin = async () => {
             await updateUserRole({userId: user.user?.id, role: 'admin'})
-            await router.push("/onboarding/admin/dashboard");
+            toast('Account marked as an Admin')
+             router.push("/onboarding/admin/dashboard");
         }
 
-        return <div className={` w-full h-full flex items-center justify-center flex-col gap-8`}>
+        return <div className={` w-full  flex items-center justify-center flex-col gap-8 flex-1  shadow-2xl rounded-3xl`}>
 
             <h1 className={`text-4xl`}>Who are you?</h1>
             <div className={`flex items-center justify-center gap-8`}>
-                <Button onClick={(ev) => {
+                <Button onClick={() => {
                     updateUser()
                 }}>
                     User
                 </Button>
-                <Button onClick={(ev) => {
-                    updateClient().then(() => console.log("Client updated"))
+                <Button onClick={() => {
+                    updateClient()
                 }}>
                     Client
                 </Button>
-                <Button onClick={(ev) => {
-                    updateAdmin().then(() => console.log("Admin added"))
+                <Button onClick={() => {
+                    updateAdmin()
                 }}>
                     Admin
                 </Button>
             </div>
-
         </div>
     }
-
 }
-
 
 export default Page;
-
-
-{/*<h1>Add skills, projects & experience to improve your profile.</h1>*/
-}
-
-{/*<div className={`flex items-center justify-center gap-8`}>*/
-}
-{/*    <Button>*/
-}
-{/*        <Link href={"/dashboard"}>Skip</Link>*/
-}
-{/*    </Button>*/
-}
-{/*    <Button>*/
-}
-{/*        <Link href={"/onboarding/experience"}>Experience</Link>*/
-}
-{/*    </Button>*/
-}
-{/*</div>*/
-}

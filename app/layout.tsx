@@ -5,6 +5,8 @@ import "./globals.css";
 import {ThemeProvider} from "@/components/theme-provider";
 import {clsx} from "clsx";
 import {dark} from "@clerk/themes";
+import {GlobalUserContextProvider} from "@/context/context";
+import {Toaster} from "@/components/ui/sonner";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -21,14 +23,17 @@ export default function RootLayout({
         baseTheme: dark
     }}>
         <html lang="en">
-        <body className={clsx(inter.className, "w-full h-screen")}>
+        <body className={clsx(inter.className, "w-full min-h-screen max-w-[2500px] p-4 lg:p-8")}>
         <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
         >
-            {children}
+            <GlobalUserContextProvider>
+                {children}
+                <Toaster theme={"system"} visibleToasts={5}/>
+            </GlobalUserContextProvider>
         </ThemeProvider>
         </body>
         </html>

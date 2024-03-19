@@ -1,13 +1,24 @@
 import mongoose from "mongoose"
 
 const userSchema = new mongoose.Schema({
-    id: {type: String, required: true},
-    username: {type: String, required: true},
-    name: {type: String, required: true},
-    role:{type: String, default: 'admin'},
-    image: {type: String,},
-    bio: [{type: mongoose.Schema.Types.ObjectId, ref: "Bio"}],
-    onboarded: {type: Boolean, default: false}
+    id: {type: String, },
+    userName: {type: String, },
+    firstName: {type: String,},
+    lastName: {type: String, },
+    phone: {type: String, },
+    hallTicketNo: {type: String, },
+    year: {type: String, },
+    branch: {type: String, },
+    role:{type: String, },
+    onboarded: {type: Boolean, default: false},
+    softSkills:{type:Array},
+    techSkills:{type:Array},
+    project1:{type:Object},
+    project2:{type:Object},
+    project3:{type:Object},
+    experience1:{type:Object},
+    experience2:{type:Object},
+    experience3:{type:Object},
 
 })
 
