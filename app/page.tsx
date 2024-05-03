@@ -15,37 +15,20 @@ const Page = () => {
     // @ts-ignore
     const {User, setUser} = useGlobalUserContext()
 
-    if (user.isSignedIn) {
-        const creatingUser = async () => {
-            // @ts-ignore
-            await createUser(user.user?.id)
-        }
-        creatingUser().then(() => toast("User Updated"))
-
+    const creatingUser = async ()=> {
         // @ts-ignore
-        findUser({userId: user.user?.id}).then((result) => {
-            if (result !== null) {
-                if (result.userName !== User.userName && result.role !== User.role) {
-                    // setUser({userName: result.userName, role: result.role,})
-                    setUser({
-                        name: result.userName,
-                        role: result.role,
-                        phone: result.phone,
-                        year: result.year,
-                        branch: result.branch,
-                        firstName: result.firstName,
-                        lastName: result.lastName,
-                        userName: result.userName,
-                        hallTicketNo: result.hallTicketNo,
-                        onBoarded: result.onBoarded,
-                        id: result.id,
-                        techSkills: result.techSkills,
-                        softSkills: result.softSkills,
-                    })
-                }
-            }
-        })
+        await createUser(user.user?.id)
     }
+    creatingUser().then(()=>toast("User Updated"))
+
+    // @ts-ignore
+     findUser({userId: user.user?.id}).then((result) => {
+        if (result !== null) {
+            if (result.userName !== User.userName && result.role !== User.role) {
+                setUser({userName: result.userName, role: result.role,})
+            }
+        }
+    })
 
     return <main className={`w-full flex h-full flex-col justify-center items-center gap-8`}>
         <h1 className={`text-4xl`}>KSM - Placement Portal</h1>
