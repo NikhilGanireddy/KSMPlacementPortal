@@ -1,4 +1,5 @@
 "use server"
+
 import User from "../models/UserModel.model"
 import {connectToDatabase} from "@/utils/mongodb";
 
@@ -6,34 +7,13 @@ interface createUserParams {
     userId: string,
 }
 
-
-export async function createUser({userId}: createUserParams) {
-    await connectToDatabase();
-    const isThere = await User.findOne({id: userId})
-    if (!isThere) {
-        await User.create({id: userId})
-    }
-}
-
 interface updateUserRoleParams {
     userId: string,
     role: string,
 }
 
-export async function updateUserRole({userId, role}: updateUserRoleParams): Promise<void> {
-    await connectToDatabase();
-    await User.findOneAndUpdate({id: userId}, {role: role}, {upsert: true,})
-}
-
 interface findUserRoleParams {
     userId: string
-}
-
-export async function findUser({userId}: findUserRoleParams) {
-    await connectToDatabase();
-    const user = await User.findOne({id: userId})
-    // console.log(JSON.stringify(user))
-    return JSON.parse(JSON.stringify(user))
 }
 
 interface updatePersonalDetailsParams {
@@ -45,6 +25,49 @@ interface updatePersonalDetailsParams {
     hallTicketNo: string,
     year: string,
     branch: string,
+}
+
+interface updateExperienceParams {
+    userId: string,
+    experience1: Object,
+    experience2: Object,
+    experience3: Object,
+
+}
+
+interface updateSkillsParams {
+    userId: string,
+    softSkills: Array<string>,
+    techSkills: Array<string>,
+}
+
+interface updateProjectsParams {
+    userId: string,
+    project1: Object,
+    project2: Object,
+    project3: Object,
+
+}
+
+
+export async function createUser({userId}: createUserParams) {
+    await connectToDatabase();
+    const isThere = await User.findOne({id: userId})
+    if (!isThere) {
+        await User.create({id: userId})
+    }
+}
+
+export async function updateUserRole({userId, role}: updateUserRoleParams): Promise<void> {
+    await connectToDatabase();
+    await User.findOneAndUpdate({id: userId}, {role: role}, {upsert: true,})
+}
+
+export async function findUser({userId}: findUserRoleParams) {
+    await connectToDatabase();
+    const user = await User.findOne({id: userId})
+    // console.log(JSON.stringify(user))
+    return JSON.parse(JSON.stringify(user))
 }
 
 export async function updatePersonalDetails({
@@ -69,13 +92,6 @@ export async function updatePersonalDetails({
     }, {upsert: true,})
 }
 
-
-interface updateSkillsParams {
-    userId: string,
-    softSkills: Array<string>,
-    techSkills: Array<string>,
-}
-
 export async function updateSkillsDetails({
                                               userId, softSkills, techSkills
                                           }: updateSkillsParams): Promise<void> {
@@ -85,36 +101,20 @@ export async function updateSkillsDetails({
     }, {upsert: true,})
 }
 
-interface updateProjectsParams {
-    userId: string,
-    project1: Object,
-    project2: Object,
-    project3: Object,
-
-}
-
 export async function updateProjectsDetails({
                                                 userId, project1, project2, project3
                                             }: updateProjectsParams): Promise<void> {
     await connectToDatabase();
-     await User.findOneAndUpdate({id: userId}, {
+    await User.findOneAndUpdate({id: userId}, {
         project1: project1, project2: project2, project3: project3,
     }, {upsert: true,})
 }
 
-interface updateExperienceParams {
-    userId: string,
-    experience1: Object,
-    experience2: Object,
-    experience3: Object,
-
-}
-
 export async function updateExperienceDetails({
-                                                userId, experience1, experience2, experience3
-                                            }: updateExperienceParams): Promise<void> {
+                                                  userId, experience1, experience2, experience3
+                                              }: updateExperienceParams): Promise<void> {
     await connectToDatabase();
-     await User.findOneAndUpdate({id: userId}, {
-        experience1: experience1, experience2: experience2, experience3: experience3,
+    await User.findOneAndUpdate({id: userId}, {
+        experience1: experience1, experience2: experience2, experience3: experience3, onBoarded: true
     }, {upsert: true,})
 }

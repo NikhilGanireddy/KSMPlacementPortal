@@ -10,6 +10,7 @@ interface userProps {
     phone: string,
     year: string,
     branch: string,
+    onBoarded:boolean,
     firstName: string,
     lastName: string,
     userName: string,
@@ -19,7 +20,7 @@ interface userProps {
 }
 
 export const GlobalUserContextProvider = ({children}: { children: React.ReactNode }) => {
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(true);
     const [User, setUser] = useState<userProps>({
         name: "",
         role: "",
@@ -30,6 +31,7 @@ export const GlobalUserContextProvider = ({children}: { children: React.ReactNod
         lastName: "",
         userName: "",
         hallTicketNo: "",
+        onBoarded: false,
         id: "",
         techSkills: [""],
         softSkills: [""],

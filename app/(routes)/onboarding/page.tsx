@@ -6,13 +6,17 @@ import {useUser} from "@clerk/nextjs";
 import {useRouter} from "next/navigation";
 // import {useGlobalUserContext} from "@/context/context";
 import {toast} from "sonner";
+import {useGlobalUserContext} from "@/context/context";
 
 const Page = () => {
 
     const user = useUser()
     const router = useRouter();
-
+    // @ts-ignore
+    const {User, setUser} = useGlobalUserContext()
     if (user.isSignedIn) {
+
+        {User.onBoarded && router.push(`/${User.role}/dashboard`)}
 
         const updateUser = async () => {
             await updateUserRole({userId: user.user?.id, role: 'user'})
@@ -29,6 +33,7 @@ const Page = () => {
             toast('Account marked as an Admin')
              router.push("/onboarding/admin/dashboard");
         }
+
 
         return <div className={` w-full  flex items-center justify-center flex-col gap-8 flex-1  shadow-2xl rounded-3xl`}>
 

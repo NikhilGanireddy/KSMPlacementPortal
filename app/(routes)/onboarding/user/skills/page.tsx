@@ -79,17 +79,17 @@ const Page = () => {
     }
 
     return <main
-        className={`flex flex-col gap-16 w-full md:w-3/4 p-4 lg:p-12 rounded-3xl shadow-lg justify-center items-center`}>
-        <h1 className={`text-4xl font-semibold`}>Skills</h1>
+        className={`flex flex-col gap-16 w-full md:w-3/4 p-4 lg:p-12 overflow-y-scroll rounded-3xl shadow-lg  items-center`}>
+        <h1 className={`text-xl md:text-2xl lg:text-4xl font-semibold`}>Skills</h1>
         <div className="min-w-full flex flex-col gap-8">
-            <h1 className={`text-2xl`}>Technical Skills</h1>
+            <h1 className={`text-lg md:text-xl lg:text-2xl`}>Technical Skills</h1>
             <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
                     <Button
                         variant="outline"
                         role="combobox"
                         aria-expanded={open}
-                        className="w-full justify-between"
+                        className="w-full justify-between "
                     >
                         Select skill...
                         <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50"/>
@@ -103,7 +103,7 @@ const Page = () => {
                             <CommandGroup className={`w-full`}>
                                 {technicalSkillsLists.map((framework) => {
                                     return <CommandItem
-                                        className={`w-full`}
+                                        className={`w-full text-xs md:text-base`}
                                         key={framework.value}
                                         value={framework.value}
                                         onSelect={(currentValue) => {
@@ -120,18 +120,18 @@ const Page = () => {
                 </PopoverContent>
             </Popover>
             <div className={`min-w-full flex items-center gap-4 flex-wrap`}>
-                {skills.map((skill, index) => <Badge variant={"outline"} className={`relative px-4 py-2 capitalize`}
+                {skills.map((skill, index) => <Badge variant={"outline"} className={`relative px-4 py-2 capitalize text-xs md:text-base`}
                                                      key={index}>
                 <span className={`absolute -top-1 -right-1 cursor-pointer`}
                       onClick={() => deleteSkill(skill)}>
-                    <CircleX className={`h-4 w-4`}/>
+                    <CircleX className={`h-4 w-4 `}/>
                 </span>
                     {skill}
                 </Badge>)}
             </div>
         </div>
         <div className="min-w-full flex flex-col gap-8">
-            <h1 className={`text-2xl`}>Soft Skills</h1>
+            <h1 className={`text-lg md:text-xl lg:text-2xl`}>Soft Skills</h1>
             <Popover open={openSoft} onOpenChange={setOpenSoft}>
                 <PopoverTrigger asChild>
                     <Button

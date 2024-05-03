@@ -20,10 +20,10 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (<ClerkProvider appearance={{
-        baseTheme: dark
+        baseTheme: dark,
     }}>
         <html lang="en">
-        <body className={clsx(inter.className, "w-full min-h-screen max-w-[2500px] p-4 lg:p-8")}>
+        <body className={clsx(inter.className, "w-full overflow-y-hidden h-screen max-w-[2500px] box-border")}>
         <ThemeProvider
             attribute="class"
             defaultTheme="system"

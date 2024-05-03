@@ -133,7 +133,7 @@ const Page = () => {
     }
 
     return <main
-        className={`flex flex-col gap-16 w-full md:w-3/4  p-4 lg:p-12 rounded-3xl shadow-lg justify-center items-center`}>
+        className={`flex flex-col gap-16 w-full md:w-3/4 rounded-3xl shadow-lg justify- items-start`}>
         <h1 className={`text-4xl font-semibold`}>Projects</h1>
         <div className="min-w-full flex flex-col gap-8">
             <div className={`min-w-full flex flex-col lg:flex-row gap-8`}>

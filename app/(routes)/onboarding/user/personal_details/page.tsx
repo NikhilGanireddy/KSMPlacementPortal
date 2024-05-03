@@ -14,16 +14,7 @@ import {useGlobalUserContext} from "@/context/context";
 import {useRouter} from "next/navigation";
 import {toast} from "sonner";
 
-// interface PersonalDetailsProps {
-//     userId: string,
-//     userName: string,
-//     phone: number,
-//     firstName: string,
-//     lastName: string,
-//     hallTicketNo: string,
-//     year: string,
-//     branch: string,
-// }
+
 
 const Page = () => {
     const router = useRouter()

@@ -1,14 +1,13 @@
 "use client"
 
 import React from "react";
-import Navbar from "@/components/shared/Navbar";
 
 const Layout = ({children}: { children: React.ReactNode }) => {
 
-    return (<div className={`w-full min-h-screen max-w-[2500px] flex gap-y-16 items-center flex-col`}>
-        <Navbar/>
-        {children}
-    </div>);
+    return (
+        <div className={`w-full min-h-full h-full max-w-[2500px] flex gap-y-8 justify-center items-center flex-col`}>
+            {children}
+        </div>);
 }
 export default Layout;
 
